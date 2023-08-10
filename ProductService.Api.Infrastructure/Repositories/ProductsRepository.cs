@@ -18,7 +18,7 @@ public sealed class ProductsRepository : IProductsRepository
     public async Task<ProductEntity?> FirstOrDefaultAsync(Guid id,
         CancellationToken cancellationToken = default)
     {
-        return await _context.Products.FirstOrDefaultAsync(p => p.ProductId == id, cancellationToken: cancellationToken);
+        return await _context.Products.FirstOrDefaultAsync(p => p.Id == id, cancellationToken: cancellationToken);
     }
 
     public async Task<ProductEntity?> AddAsync(ProductEntity product,
@@ -34,7 +34,7 @@ public sealed class ProductsRepository : IProductsRepository
     public async Task DeleteAsync(Guid id,
         CancellationToken cancellationToken = default)
     {
-        var product = await _context.Products.FirstOrDefaultAsync(p => p.ProductId == id, cancellationToken);
+        var product = await _context.Products.FirstOrDefaultAsync(p => p.Id == id, cancellationToken);
 
         if (product is null)
         {
@@ -49,16 +49,16 @@ public sealed class ProductsRepository : IProductsRepository
     public async Task<ProductEntity?> UpdateAsync(ProductEntity product,
         CancellationToken cancellationToken = default)
     {
-        var findedProduct = await _context.Products.FirstOrDefaultAsync(p => p.ProductId == product.ProductId, cancellationToken);
+        var findedProduct = await _context.Products.FirstOrDefaultAsync(p => p.Id == product.Id, cancellationToken);
 
         if (findedProduct is null)
         {
             return null;
         }
 
-        findedProduct.ProductName = product.ProductName;
-        findedProduct.ProductPrice = product.ProductPrice;
-        findedProduct.ProductDescription = product.ProductDescription;
+        findedProduct.Name = product.Name;
+        findedProduct.Price = product.Price;
+        findedProduct.Description = product.Description;
 
         await _context.SaveChangesAsync(cancellationToken);
 

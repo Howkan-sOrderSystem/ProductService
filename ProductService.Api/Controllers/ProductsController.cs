@@ -42,7 +42,7 @@ public class ProductsController : ControllerBase
             return NotFound();
         }
 
-        await _productService.DeleteAsync(products.ProductId);
+        await _productService.DeleteAsync(products.Id);
 
         return NoContent();
     }
@@ -52,7 +52,7 @@ public class ProductsController : ControllerBase
     {
         await _productService.AddAsync(product);
 
-        return CreatedAtAction(nameof(GetProductsAsync), new { id = product.ProductId }, product);
+        return CreatedAtAction(nameof(GetProductsAsync), new { id = product.Id }, product);
     }
 
     [HttpPut("{id}")]
