@@ -1,17 +1,12 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-
-namespace ProductService.Api.Model;
+﻿namespace ProductService.Api.Model;
 
 public class ProductEntity
 {
-    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-    [Key]
-    public Guid ProductId { get; set; }
+    public Guid Id { get; set; }
 
-    public string? ProductName { get; set; }
+    public string Name { get; set; }
 
-    public string? ProductDescription { get; set; }
+    public string? Description { get; set; }
 
-    public int? ProductPrice { get; set; }
+    public decimal Price { get; set; }
 }
